@@ -11,10 +11,10 @@
 #  REQUIREMENTS: bc date
 #          BUGS: ---
 #         NOTES: ---
-#        AUTHOR: codeever, 
+#        AUTHOR: codeever
 #  ORGANIZATION: 
 #       CREATED: 2021年12月03日 09:43
-#      REVISION: v1.0
+#      REVISION: v1.1
 #===============================================================================
 
 set -o errexit
@@ -27,7 +27,7 @@ START_DATE="2021-12-01"
 # usage: logChanged $start_date $end_date
 logChanged(){
     cd $NOTE_DIR
-    echo "$(git log --name-only --oneline --since=$1 --until=$2 | grep '.md$')"
+    echo "$(git log --name-only --oneline --since=$1'T00:00' --until=$2'T00:00' | grep '.md$')"
 }
 
 # get the next date of the specific date
@@ -70,4 +70,4 @@ getReviewfile(){
     echo "$reviewfiles" |uniq
 }
 
-getReviewfile "$(date +%F)"
+getReviewfile $(date +%F)
